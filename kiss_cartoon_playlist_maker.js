@@ -53,7 +53,7 @@
 	function buildXMLthing() {
 		// Build XML
 		eps.each(function(i) {
-			$(xml).find('trackList').append( $($('<track />', xml).append( $('<location />)', xml).text(links[i]), $('<title />', xml).text(ep_titles[i]) )) )
+			$(xml).find('trackList').append( $($('<track />', xml).append( $('<location />)', xml).text(links[i]), $('<title />', xml).text(ep_titles[i]), $('<album />').text(title) )) )
 		})
 		$('playlist', $(xml)).append( $('<title />', xml).text(title) )
 
