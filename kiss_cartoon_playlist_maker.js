@@ -44,7 +44,7 @@
 
 	var ep_titles = []
 	eps.each(function() {
-		ep_titles.push(this.title.split("Watch cartoon")[1].split(title + " Episode ")[1].split(" online in high quality")[0])
+		ep_titles.push(this.title.split("Watch cartoon")[1].split(title + " ")[1].split(" online in high quality")[0])
 	})
 
 
