@@ -2,6 +2,15 @@
 		alert('Wrong directory.  You must be on the page which lists the episode links.')
 	}
 
+	if (!window.console) console = {};
+	console.log = console.log || function(){};
+	console.warn = console.warn || function(){};
+	console.error = console.error || function(){};
+	console.info = console.info || function(){};
+	
+	console.info("KPM: Starting Playlist Maker")
+	console.info("KPM: This takes about one minute.  If links stop downloading something went wrong.")
+	
 	function download(filename, text) {
 	  var element = document.createElement('a');
 	  element.setAttribute('href', 'data:text/xml;charset=utf-8,' + encodeURIComponent(text));
@@ -54,14 +63,19 @@
 		// Download Playlist
 		//window.prompt("Copy to clipboard: Ctrl+C, Enter", xml_string);
 		download(jQuery.camelCase(title) + ".xspf", xml_string)
+		
+		console.info("KPM: Complete.")
 	}
 
 	var links = []
 	$.when(
 		$.getScript( "/Scripts/asp.js")
 	).done(function() {
+		console.info("KPM: Starting link retrieval.")
+		
 		eps.each(function() {
 			$.get( this.href, function( data ) {
+				console.info("KPM: Link collected. " + count + " left.")
 				links.push(
 					asp.wrap($('#selectQuality', $(data)).val())
 					)
@@ -71,7 +85,7 @@
 				)
 			}).always(function() {
 				count--
-				if (count == 0) { buildXMLthing() }
+				if (count == 0) { console.info("KPM: Links sucessfully retrieved."); buildXMLthing() }
 			})
 		})
 	})
