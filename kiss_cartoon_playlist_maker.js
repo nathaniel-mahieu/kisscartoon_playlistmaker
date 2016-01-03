@@ -1,7 +1,3 @@
-// Functions
-
-function makePlaylist() {
-	
 	if (window.location.pathname.split("/").length > 3) {
 		alert('Wrong directory.  You must be on the page which lists the episode links.')
 		return(false)
@@ -81,4 +77,3 @@ function makePlaylist() {
 		})
 	})
 		
-}
