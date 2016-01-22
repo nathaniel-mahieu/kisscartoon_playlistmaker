@@ -2,6 +2,8 @@
 		alert('Wrong directory.  You must be on the page which lists the episode links.')
 	}
 
+	var prompt_start = prompt("Which episode will the playlist start with?  Enter a positive integer.  Episodes indexed from 1. 9 episodes will be downloaded.", 1) - 1;
+	
 	if (!window.console) console = {};
 	console.log = console.log || function(){};
 	console.warn = console.warn || function(){};
@@ -47,9 +49,14 @@
 		ep_titles.push(this.title.split("Watch cartoon")[1].split(title + " ")[1].split(" online in high quality")[0])
 	})
 
-
+	var prompt_end = prompt_start + 8;
+	if (prompt_end > eps.length) { prompt_end = eps.length }
+	
+	eps = eps.slice(prompt_start, prompt_end)
 	count = eps.length;
 
+	ep_titles = ep_titles.slice(prompt_start, prompt_end)
+	
 	function buildXMLthing() {
 		// Build XML
 		eps.each(function(i) {
